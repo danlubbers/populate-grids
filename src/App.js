@@ -8,16 +8,21 @@ function App() {
   const [grids, setGrids] = useState([]);
 
   const createGrids = (value) => {
+    // clear the grids for additional user input
     setGrids([]);
+
+    // loop to the value of user input. 'i' value starts at 1 instead of 0 because our grid starts at 1, instead where the array index starts at 0
     for (let i = 1; i <= value; i++) {
+      // callback function needed to get the previous grids state, then spread previous state and add the value of i ( increment )
       setGrids((grids) => [...grids, i]);
     }
   };
 
-  const renderGrids = grids.map((e, i) => {
+  // loop over grids array and render "Grid with the incremented numbers"
+  const renderGrids = grids.map((num, idx) => {
     return (
-      <div className="grid" key={i}>
-        Grid #{e}
+      <div className="grid" key={`${num} - ${idx}`}>
+        Grid #{num}
       </div>
     );
   });
