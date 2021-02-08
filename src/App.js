@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import RenderGrids from "./components/RenderGrids";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -7,7 +7,9 @@ function App() {
   const [value, setValue] = useState(0);
   const [grids, setGrids] = useState([]);
 
-  const createGrids = (value) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     // clear the grids for additional user input
     setGrids([]);
 
@@ -18,15 +20,6 @@ function App() {
     }
   };
 
-  // loop over grids array and render "Grid with the incremented numbers"
-  const renderGrids = grids.map((num, idx) => {
-    return (
-      <div className="grid" key={`${num} - ${idx}`}>
-        Grid #{num}
-      </div>
-    );
-  });
-
   return (
     <div className="App">
       <header className="App-header">
@@ -34,11 +27,13 @@ function App() {
       </header>
 
       <section>
-        <div>
+        <form onSubmit={handleSubmit}>
           <input type="number" onChange={(e) => setValue(e.target.value)} />
-          <button onClick={() => createGrids(value)}>Populate Grids</button>
+          <button>Populate Grids</button>
+        </form>
+        <div className="gridContainer">
+          <RenderGrids grids={grids} setGrids={setGrids} />
         </div>
-        <div className="gridContainer">{renderGrids}</div>
       </section>
     </div>
   );
