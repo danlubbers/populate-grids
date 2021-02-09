@@ -6,12 +6,14 @@ import "./App.css";
 function App() {
   const [value, setValue] = useState(0);
   const [grids, setGrids] = useState([]);
+  const [inputList, setInputList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // clear the grids for additional user input
     setGrids([]);
+    // setInputList([]);
 
     if (Math.sign(value) !== 1)
       alert(
@@ -21,7 +23,8 @@ function App() {
     // loop to the value of user input. 'i' value starts at 1 instead of 0 because our grid starts at 1, instead where the array index starts at 0
     for (let i = 1; i <= value; i++) {
       // callback function needed to get the previous grids state, then spread previous state and add the value of i ( increment )
-      setGrids((grids) => [...grids, i]);
+      setGrids((grids) => [...grids, `Grid #${i}`]);
+      setInputList((grids) => [...grids, ""]);
     }
   };
 
@@ -40,7 +43,12 @@ function App() {
           <button>Populate Grids</button>
         </form>
         <div className="gridContainer">
-          <RenderGrids grids={grids} setGrids={setGrids} />
+          <RenderGrids
+            grids={grids}
+            setGrids={setGrids}
+            inputList={inputList}
+            setInputList={setInputList}
+          />
         </div>
       </section>
     </div>
