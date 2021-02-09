@@ -1,23 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const RenderGrids = ({ grids, setGrids }) => {
-  const [textContent, setTextContent] = useState("");
-
-  const changeGridText = (e, idx) => {
-    const { value } = e.target;
-    console.log("Grid", value);
-    setTextContent(value);
-  };
-
+const RenderGrids = ({ grids }) => {
   return grids.map((num, idx) => {
-    let placeHolderText = `Grid #${num}`;
+    let textContent = `Grid #${num}`;
     return (
       <div className="grid" key={`${num} - ${idx}`}>
-        <input
-          key={`${num} - ${idx}`}
-          placeholder={placeHolderText}
-          onChange={(e) => changeGridText(e, idx)}
-        />
+        <p>{textContent}</p>
       </div>
     );
   });
