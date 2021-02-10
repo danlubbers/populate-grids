@@ -13,7 +13,7 @@ function App() {
 
     // clear the grids for additional user input
     setGrids([]);
-    // setInputList([]);
+    setInputList([]);
 
     if (Math.sign(value) !== 1)
       alert(

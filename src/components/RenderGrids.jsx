@@ -3,10 +3,10 @@ import React from "react";
 const RenderGrids = ({ grids, inputList, setInputList }) => {
   const changeTextContent = (e, idx) => {
     const { value } = e.target;
-    return grids.filter((word, i) => {
+    return grids.filter((_, i) => {
       if (i === idx) {
-        let insertValue = inputList.splice(i, 1, value);
-        setInputList([...inputList, insertValue]);
+        inputList.splice(i, 1, value);
+        setInputList((inputList) => [...inputList]);
       }
     });
   };
